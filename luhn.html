@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<!--  Specifying our module -->
+<html lang="en" ng-app="myModule">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <script src="angular.min.js"></script>
+  <script src="scp.js"></script>
+  <title></title>
+
+
+  <style ng-controller="myController">
+    body { background: #fdfdfd; }
+    .form-group-mini { width: 33%; float: left; padding: 0 10px; }
+    .form-group-mini:first-child { padding-left: 0; }
+    .form-group-mini:last-child { padding-right: 0; }
+    .input-group-addon { min-width: 150px; }
+
+    /* The border of input became red if its ng-touched & ng-invalid
+      both are true i.e input is once touched but its value is invalid */
+    input.ng-touched.ng-invalid{ border:2px solid red;}
+    /* When Submit button become disabled its opacity changed to 0.4 */
+    button[disabled = "disabled"]{cursor: not-allowed !important; opacity: 0.4; }
+
+
+  </style>
+</head>
+
+<!-- Specifying our controller -->
+<body ng-controller="myController">
+  <nav class='navbar navbar-default'>
+    <div class='container'>
+      <div class="navbar-header">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
+      <div class='page-header'>
+        <h1>Order now</h1>
+      </div>
+
+      <div class='panel'>
+        <div class='panel-body'>
+
+          <form name="form" action="submit.html" >
+            
+            <!-- Card Number -->
+            <div class='form-group'>
+              <label>Credit card number:</label>
+              <div class='input-group'>
+
+                <!-- maxlength=16 & minlength=13 and Only contains letter between 0-9 otherwise it is not valid  -->
+                <input type="text" class='form-control' ng-model="number" id='card' maxlength="19" ng-pattern="/^[0-9]+$/" name="card_no" ng-required="true"/>
+
+                <div class='input-group-addon' id='type' >
+                  <!-- calling fun function, that function manipulate the value of name nad right model -->
+                  {{ fun(number) }}
+                  {{ (number.length>0)?name:""; }}
+                  <img style="width:15px; height=15px" ng-if="invalid!='Invalid' && right=='t'" src="right.png" alt="right">
+                  <img style="width:15px; height=15px" ng-if="right=='w'" src="w.png"alt="invalid">
+                </div>
+              </div>
+
+              <!-- If that input box is touched and the value in it is not valid, then this div will work-->
+              <div  style=" marginleft:20px; color:red; font-size=8px;" ng-if="form.card_no.$touched && right!='t'">
+                *Please enter the valid Card Number
+              </div> 
+            </div>
+
+            <!-- Card Name -->
+            <div class="form-group">
+              <label>Name on card:</label>
+              <!-- Name must only contains only alphabets and space else it will be in valid -->
+              <input type="text" name="card_name" class='form-control' ng-model="Name" ng-pattern="/^[a-zA-Z ]+$/" ng-required="true">
+            </div>
+
+            <div class='clearfix'>
+
+              <!-- Expiry Year-->
+              <div class="form-group form-group-mini">
+                <label>Expiry year: </label>
+                <!-- Min value of the year is the current year going on  and -->
+                <input type='number' name="card_year" min="{{ tdate.getFullYear() }}" ng-model="year" class='form-control' max=2050 ng-required="true">
+              </div>
+
+              <!-- Calling a date function, which checks if the year is the current year than minimum value of the month is current month  else its value is 1, the result of minimum value of month is stored in min_date -->
+              {{ date(tdate,month,year) }}
+              
+              <!-- Expiry Month -->
+              <div class="form-group form-group-mini">
+                <label>Expiry month:</label>
+
+                <!-- Minimum value of month is came from date function-->
+                <input type='number' name="card_month" min="{{ min_date }}" max=12 ng-model="month" class='form-control' maxlength="2" ng-required="true">
+              </div>
+
+              <!-- CVV -->
+              <div class="form-group form-group-mini">
+                <label>CVV:</label>
+
+                <!-- Maximum and minimum value of CVV comes from the fact that if the card is American express, then length of CVV was expected to be 4 otherwise length of 3 is expected also CVV only except number otherwise it will became invalid-->
+                <input type='text' name="card_cvv" class='form-control' ng-model="cvv" maxlength="{{(name=='American Express')?4:3;}}" minlength="{{(name=='American Express')?4:3;}}" ng-pattern="/^[0-9]+$/" ng-required="true">
+              </div >
+            </div>
+            <br>
+            <p>
+
+              <!-- Button is disabled until all the value of the input field and credit card became valid-->
+              <input value="Submit" type="submit" class='btn btn-primary' ng-disabled="form.$invalid || right!='t' ">
+            </p>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
