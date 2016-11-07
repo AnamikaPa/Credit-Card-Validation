@@ -104,7 +104,7 @@
                 <label>CVV:</label>
 
                 <!-- Maximum and minimum value of CVV comes from the fact that if the card is American express, then length of CVV was expected to be 4 otherwise length of 3 is expected also CVV only except number otherwise it will became invalid-->
-                <input type='text' name="card_cvv" class='form-control' ng-model="cvv" maxlength="{{(name=='American Express')?4:3;}}" minlength="{{(name=='American Express')?4:3;}}" ng-pattern="/^[0-9]+$/" ng-required="true">
+                <input type='password' name="card_cvv" class='form-control' ng-model="cvv" maxlength="{{(name=='American Express')?4:3;}}" minlength="{{(name=='American Express')?4:3;}}" ng-pattern="/^[0-9]+$/" ng-required="true">
               </div >
             </div>
             <br>
