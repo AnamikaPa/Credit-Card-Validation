@@ -62,7 +62,7 @@ myApp.controller("myController",function($scope){
 	// Created a Function which manipulate the min value of month model
 	$scope.min_date=1;
 	$scope.date = function(tdate,month,year){
-		(year==tdate.getFullYear() && (!month || month<=tdate.getMonth()))?$scope.min_date=tdate.getMonth()-1:
+		(year==tdate.getFullYear() && (!month || month<=tdate.getMonth()))?$scope.min_date=tdate.getMonth()+1:
 		$scope.min_date=1;
 	};
 
