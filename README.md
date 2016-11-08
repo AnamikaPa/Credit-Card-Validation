@@ -2,8 +2,8 @@
 Simple Credit card validation page, with form validation and Credit Card validation with Luhn Algorithm. Done using AngularJS
 
 Credit Card validation based on:
-•	Luhn Algorithm applied after the number length is greater than 13, till that it try to guess the Credit Card
-•	American Express	    Start with:34,37	 length:15
+•	Luhn Algorithm applied after the number length is greater than 13, till than it will try to guess 
+•	American Express	    Start with:34,37	length:15
 •	MasterCard	          Start with:51, 52, 53, 54, 55	   length:16-19
 •	Visa	                Start with:4	   length:13-16
   
