@@ -1,17 +1,28 @@
 # Credit-Card-Validation
-Simple Credit card validation page, with form validation and Credit Card validation with Luhn Algorithm. Done using AngularJS
+<ul>
+<li>Credit card validation consist of two types of validation.
+    <ul>
+        <li><b>Form Validation</b> which validate all the fields of credit card form details.
+        <li><b>Credit Card number validation</b> using Luhn Algorithm. 
+    </ul>
+<li>Done using AngularJS
+</ul>
 
-Credit Card validation based on:
-•	Luhn Algorithm applied after the number length is greater than 13, till than it will try to guess 
-•	American Express	    Start with:34,37	length:15
-•	MasterCard	          Start with:51, 52, 53, 54, 55	   length:16-19
-•	Visa	                Start with:4	   length:13-16
-  
-  
-Name must only contain Alphabets otherwise it is INVALID. 
-Input of Date if taken in such a way that it is always greater than today's date.
-
-Input of CVV is based on the fact that if the Credit Card is American Express then the CVV is expected of length 4, otherwise length of 3 is expected. If length of CVV is not accordingly, than it will be INVALID.
-
-SUBMIT button is disabled untill all the input of form became valid.
-On submit the control is Shifted to submit.html
+<h2>Credit Card validation based on:</h2>
+<ul>
+    <li>Luhn Algorithm applied when length of credit card number becomes greater than 13, till than it will try to guess the card type as follows,
+        <ul>
+            <li>American Express (Start with:34,37 and length:15)
+            <li>MasterCard (Start with:51, 52, 53, 54, 55 and length:16-19)
+            <li>Visa (Start with:4 and length:13-16)
+        </ul>
+    <li>Card holder name must only contain Alphabets, otherwise it is INVALID. 
+    <li>Card Expiry date must always be greater than today's date.
+    <li> CVV
+        <ul>
+            <li>For American Express, length of CVV must be 4. 
+            <li>For Others, CVV length is expected to be 3.
+            <li>It must only contain numbers.
+        </ul>
+    <li>SUBMIT button is disabled until all of the input fields of the form become valid.
+</ul>
